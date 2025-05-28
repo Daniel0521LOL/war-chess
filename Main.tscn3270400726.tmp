@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=4 uid="uid://n4e03ljp06q7"]
+
+[ext_resource type="Texture2D" uid="uid://dekkn7ho7cffa" path="res://assets/tiles/tiles.png" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://so0ov1gon80y" path="res://tile_map.gd" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://cjago3koiclfg" path="res://all_units.gd" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://falqq4373b14" path="res://Unit.tscn" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://bvxamtvmh56f8" path="res://input_handler.gd" id="4_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://iypsfx7baty1" path="res://assets/ui/double_border_box.png" id="6_lgr22"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uu6xs"]
+resource_name = "neutral"
+texture = ExtResource("1_glv2v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_03owx"]
+resource_local_to_scene = true
+tile_size = Vector2i(32, 32)
+sources/3 = SubResource("TileSetAtlasSource_uu6xs")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [3, Vector2i(0, 0)], [1, Vector2i(0, 0)], [3, Vector2i(1, 0)], [2, Vector2i(0, 0)], [3, Vector2i(2, 0)]]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameBoard" type="Node2D" parent="."]
+position = Vector2(200, 150)
+scale = Vector2(2, 2)
+script = ExtResource("2_uu6xs")
+
+[node name="Main" type="TileMapLayer" parent="GameBoard"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAACAAAAAwAAAAAAAAAAAAEAAwAAAAAAAAABAAEAAwAAAAAAAAACAAEAAwAAAAAAAAADAAEAAwAAAAAAAAADAAIAAwAAAAAAAAACAAIAAwAAAAAAAAADAAAAAwAAAAAAAAABAAIAAwAAAAAAAAAAAAIAAwAAAAAAAAADAAMAAwAAAAAAAAACAAMAAwAAAAAAAAABAAMAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAAAAAABAAQAAwAAAAAAAAACAAQAAwAAAAAAAAADAAQAAwAAAAAAAAAEAAQAAwAAAAAAAAAEAAMAAwAAAAAAAAAEAAIAAwAAAAAAAAAEAAEAAwAAAAAAAAAEAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAFAAEAAwAAAAAAAAAFAAIAAwAAAAAAAAAFAAMAAwAAAAAAAAAFAAQAAwAAAAAAAAAGAAQAAwAAAAAAAAAHAAQAAwAAAAAAAAAHAAMAAwAAAAAAAAAGAAMAAwAAAAAAAAAGAAIAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAwAAAAAAAAAHAAIAAwAAAAAAAAAIAAMAAwAAAAAAAAAIAAIAAwAAAAAAAAAIAAEAAwAAAAAAAAAIAAAAAwAAAAAAAAAIAAQAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAMAAwAAAAAAAAAKAAMAAwAAAAAAAAAKAAIAAwAAAAAAAAAJAAIAAwAAAAAAAAAJAAEAAwAAAAAAAAAJAAAAAwAAAAAAAAAKAAAAAwAAAAAAAAAKAAEAAwAAAAAAAAAKAAQAAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_03owx")
+
+[node name="Highlight" type="TileMapLayer" parent="GameBoard"]
+texture_filter = 1
+tile_set = SubResource("TileSet_03owx")
+
+[node name="AllUnits" type="Node2D" parent="."]
+script = ExtResource("3_fos0i")
+
+[node name="Unit2" parent="AllUnits" instance=ExtResource("3_r0du0")]
+start_map = Vector2i(5, 1)
+
+[node name="Unit" parent="AllUnits" instance=ExtResource("3_r0du0")]
+start_map = Vector2i(1, 1)
+
+[node name="UI" type="Control" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 454.0
+offset_right = 176.0
+offset_bottom = 614.0
+texture = ExtResource("6_lgr22")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="TurnHandler" type="Node" parent="."]
+script = ExtResource("4_cm0pq")

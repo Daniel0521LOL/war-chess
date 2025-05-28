@@ -1,0 +1,53 @@
+# Normalize all text files to LF line endings
+* text=auto eol=lf
+
+# Explicitly declare Godot-specific text files
+# These are generally small and merge well
+project.godot text
+*.godot text
+*.tscn text
+*.tres text
+*.gd text
+*.gdshader text
+*.shader text
+*.cfg text
+*.json text
+*.xml text
+*.import text 
+# These metadata files ARE text and should be tracked
+
+# Declare binary files that should be tracked by Git LFS
+# Add or remove extensions based on your project's needs
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text 
+# SVGs can be text, but if large, LFS is better
+*.webp filter=lfs diff=lfs merge=lfs -text
+
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+
+*.glb filter=lfs diff=lfs merge=lfs -text
+*.gltf filter=lfs diff=lfs merge=lfs -text 
+# GLTF can be text, but often embed/ref large binaries
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text 
+# OBJ is text, but can be huge
+
+# Font files
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.woff filter=lfs diff=lfs merge=lfs -text
+*.woff2 filter=lfs diff=lfs merge=lfs -text
+
+# Other potential large binary files
+# *.zip filter=lfs diff=lfs merge=lfs -text
+# *.pck filter=lfs diff=lfs merge=lfs -text
+# *.dll filter=lfs diff=lfs merge=lfs -text
+# *.exe filter=lfs diff=lfs merge=lfs -text

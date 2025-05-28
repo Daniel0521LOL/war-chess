@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=4 uid="uid://43rxdf3jv7y4"]
+
+[ext_resource type="Texture2D" uid="uid://c8axp6e7xy2b8" path="res://assets/tiles/tile_neutral.png" id="1_u52ul"]
+[ext_resource type="Texture2D" uid="uid://bkcdnr1as5c8l" path="res://assets/tiles/tile_move_highlight.png" id="2_oi3di"]
+[ext_resource type="Texture2D" uid="uid://beppo2be7mg1j" path="res://assets/tiles/tile_attack_highlight.png" id="3_0b4ue"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vonw3"]
+resource_name = "neutral"
+texture = ExtResource("1_u52ul")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2txt"]
+resource_name = "move_highlight"
+texture = ExtResource("2_oi3di")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ainy"]
+resource_name = "attack_highlight"
+texture = ExtResource("3_0b4ue")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5xgho"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_vonw3")
+sources/1 = SubResource("TileSetAtlasSource_f2txt")
+sources/2 = SubResource("TileSetAtlasSource_1ainy")
+
+[node name="Level" type="Node3D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAQAAAAAAAAADAAAAAAAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAALAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_5xgho")
