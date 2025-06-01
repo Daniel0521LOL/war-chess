@@ -1,93 +1,92 @@
-[gd_scene load_steps=25 format=3 uid="uid://bdfckd8d8q74g"]
+[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://cx6erq7muci5v"]
 
-[ext_resource type="PackedScene" uid="uid://falqq4373b14" path="res://units/Unit.tscn" id="1_2p7d8"]
-[ext_resource type="Texture2D" uid="uid://7wgupfryue10" path="res://assets/units/MiniArcherMan.png" id="2_ou0y5"]
+[ext_resource type="Texture2D" uid="uid://7wgupfryue10" path="res://assets/units/MiniArcherMan.png" id="1_tmppl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mid32"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6ysf"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jush2"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ou2w"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqpaq"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15bog"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg0lx"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(192, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rafoh"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bcgt0"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(256, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4a02"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(288, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjr54"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(320, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umgqs"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ys8qw"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4it28"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xa7iw"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmdp6"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ssep"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxvvy"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pja1l"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oasng"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oh45r"]
-atlas = ExtResource("2_ou0y5")
+atlas = ExtResource("1_tmppl")
 region = Rect2(160, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w54rd"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -167,12 +166,3 @@ animations = [{
 "name": &"moving",
 "speed": 8.0
 }]
-
-[node name="Unit" instance=ExtResource("1_2p7d8")]
-attack_range = Array[Vector2i]([Vector2i(2, 0), Vector2i(0, 2), Vector2i(-2, 0), Vector2i(0, -2), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)])
-
-[node name="AnimatedSprite" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_w54rd")
-animation = &"moving"
-frame = 0
-frame_progress = 0.0

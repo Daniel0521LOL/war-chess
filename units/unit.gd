@@ -21,17 +21,16 @@ var selected = false
 
 @export var start_map: Vector2i = Vector2i(0, 0)
 @export var unit_group: Globals.UnitGroups = 0
-@export var max_health: int = 5
-@onready var health: int = max_health
-@export var attack_range: Array[Vector2i] = []
-@export var attack_damage: int = 2
-@export var attack_type: Globals.DamageType
+@export var stats: UnitStats
+@onready var health: int = stats.max_health
 
 func _ready() -> void:
+	$AnimatedSprite.sprite_frames = stats.animations
 	change_state(States.IDLE)
 	set_position_to_map(start_map)
 	print(current_map)
-	$HealthDisplay.text = str(health) + "/" + str(max_health)
+	$HealthDisplay.text = str(health) + "/" + str(stats.max_health)
+
 	#path = game_board.find_path(current_map, Vector2i(6, 2))
 	#change_state(States.MOVING)
 
@@ -78,15 +77,15 @@ func deselect_unit() -> void:
 	selected = false
 
 func get_attackable_maps() -> Array[Vector2i]:
-	var attackable_maps: Array[Vector2i] = attack_range.duplicate()
+	var attackable_maps: Array[Vector2i] = stats.attack_range.duplicate()
 	for i in range(0, len(attackable_maps)):
 		attackable_maps[i] += current_map
 	return attackable_maps
 
 func do_attack() -> DamageInstance:
 	var damage_instance = DamageInstance.new()
-	damage_instance.amount = attack_damage
-	damage_instance.type = attack_type
+	damage_instance.amount = stats.attack_damage
+	damage_instance.type = stats.attack_type
 	action_availible = false
 	$AnimatedSprite.play("attack")
 	await $AnimatedSprite.animation_finished
@@ -95,8 +94,8 @@ func do_attack() -> DamageInstance:
 
 func take_damage(damage_instance: DamageInstance) -> void:
 	health -= damage_instance.amount
-	$HealthDisplay.text = str(health) + "/" + str(max_health)
-	print(health, "/", max_health)
+	$HealthDisplay.text = str(health) + "/" + str(stats.max_health)
+	print(health, "/", stats.max_health)
 	if health <= 0:
 		queue_free()
 

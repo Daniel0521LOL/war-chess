@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://dbvktwjs7x6ta"]
+
+[ext_resource type="SpriteFrames" uid="uid://cx6erq7muci5v" path="res://units/archer_sprite_frames.tres" id="1_25ydl"]
+[ext_resource type="Script" uid="uid://cfbn5ljmtpwj1" path="res://resources/unit_stats.gd" id="1_lg1mp"]
+
+[resource]
+script = ExtResource("1_lg1mp")
+name = "Archer"
+max_health = 4
+attack_range = Array[Vector2i]([Vector2i(2, 0), Vector2i(0, 2), Vector2i(-2, 0), Vector2i(0, -2), Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1)])
+attack_damage = 3
+attack_type = 3
+animations = ExtResource("1_25ydl")
+metadata/_custom_type_script = "uid://cfbn5ljmtpwj1"
