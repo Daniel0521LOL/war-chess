@@ -6,6 +6,13 @@ signal finished_moving
 enum States { IDLE, MOVING }
 var state = States.IDLE
 
+@onready var game_board: GameBoard = $"../../GameBoard"
+
+@export var start_map: Vector2i = Vector2i(0, 0)
+@export var unit_group: Globals.UnitGroups = 0
+@export var stats: UnitStats
+@onready var health: int = stats.max_health
+
 var current_map: Vector2i
 var path = PackedVector2Array()
 
@@ -13,16 +20,9 @@ var move_availible = true
 var action_availible = true
 
 var speed = 200
-var movement_range = 3
 
-var selected = false
-
-@onready var game_board: GameBoard = $"../../GameBoard"
-
-@export var start_map: Vector2i = Vector2i(0, 0)
-@export var unit_group: Globals.UnitGroups = 0
-@export var stats: UnitStats
-@onready var health: int = stats.max_health
+var selected: bool = false
+@onready var current_weapon: Weapon = stats.primary_weapon
 
 func _ready() -> void:
 	$AnimatedSprite.sprite_frames = stats.animations
@@ -70,6 +70,12 @@ func change_state(_new_state: States) -> void:
 		States.MOVING:
 			$AnimatedSprite.play("moving")
 
+func change_weapon() -> void:
+	if current_weapon == stats.primary_weapon:
+		current_weapon = stats.secondary_weapon
+	else:
+		current_weapon = stats.primary_weapon
+
 func select_unit() -> void:
 	selected = true
 
@@ -77,15 +83,15 @@ func deselect_unit() -> void:
 	selected = false
 
 func get_attackable_maps() -> Array[Vector2i]:
-	var attackable_maps: Array[Vector2i] = stats.attack_range.duplicate()
+	var attackable_maps: Array[Vector2i] = current_weapon.range.duplicate()
 	for i in range(0, len(attackable_maps)):
 		attackable_maps[i] += current_map
 	return attackable_maps
 
 func do_attack() -> DamageInstance:
 	var damage_instance = DamageInstance.new()
-	damage_instance.amount = stats.attack_damage
-	damage_instance.type = stats.attack_type
+	damage_instance.amount = current_weapon.damage
+	damage_instance.type = current_weapon.attack_type
 	action_availible = false
 	$AnimatedSprite.play("attack")
 	await $AnimatedSprite.animation_finished

@@ -45,7 +45,7 @@ func set_highlight_at_map_points(map_points: Array, type: int = 1) -> void:
 		Highlight.set_cell(i, 3, Vector2i(type, 0))
 
 func get_unit_move_range(unit: Unit) -> Array:
-	return _flood_fill(unit.current_map, unit.movement_range)
+	return _flood_fill(unit.current_map, unit.stats.movement)
 
 func _flood_fill(start_map: Vector2i, max_range: int) -> Array:
 	var output_array := []

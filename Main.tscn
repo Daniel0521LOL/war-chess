@@ -27,6 +27,36 @@ tile_proxies/coords_level = [[0, Vector2i(0, 0)], [3, Vector2i(0, 0)], [1, Vecto
 
 [node name="Main" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -286.0
+offset_right = 1440.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -163.0
+offset_right = 407.0
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_lgr22")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
 [node name="GameBoard" type="Node2D" parent="."]
 position = Vector2(200, 150)
 scale = Vector2(2, 2)
@@ -58,26 +88,9 @@ stats = ExtResource("7_03owx")
 start_map = Vector2i(1, 1)
 stats = ExtResource("8_wkp8b")
 
-[node name="UI" type="Control" parent="."]
-visible = false
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 454.0
-offset_right = 176.0
-offset_bottom = 614.0
-texture = ExtResource("6_lgr22")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
 [node name="TurnHandler" type="Node" parent="."]
 script = ExtResource("4_cm0pq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.5, 1.5)

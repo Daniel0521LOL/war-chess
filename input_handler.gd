@@ -41,8 +41,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		deselect_unit()
 		_next_group()
 		print("Current active group enum: ", current_active_group)
+	if selected_unit:
+		if event.is_action_pressed("cycle") and selected_unit.action_availible and not selected_unit.move_availible:
+			selected_unit.change_weapon()
+			select_unit(selected_unit)
 	if event is InputEventMouseButton and player_input_on and event.is_pressed():
-		var clicked_map = Board.global_to_map(event.position)
+		var clicked_global_position = get_viewport().canvas_transform.affine_inverse() * event.position
+		print(clicked_global_position, Board.global_to_map(clicked_global_position))
+		var clicked_map = Board.global_to_map(clicked_global_position)
 		if not Board.is_map_in_bounds(clicked_map):
 			return
 		var unit_on_tile = Units.find_unit_on_map(clicked_map)

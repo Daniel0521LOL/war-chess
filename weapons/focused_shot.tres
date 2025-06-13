@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bcn2jqn0lcup1"]
+
+[ext_resource type="Script" uid="uid://csw4odyi8mpih" path="res://resources/weapon.gd" id="1_e6v48"]
+
+[resource]
+script = ExtResource("1_e6v48")
+name = "None"
+range = Array[Vector2i]([Vector2i(3, 0), Vector2i(-3, 0), Vector2i(0, -3), Vector2i(0, 3)])
+damage = 4
+attack_type = 5
+metadata/_custom_type_script = "uid://csw4odyi8mpih"

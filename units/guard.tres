@@ -1,14 +1,24 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://8w4yirem82db"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=6 format=3 uid="uid://8w4yirem82db"]
 
 [ext_resource type="Script" uid="uid://cfbn5ljmtpwj1" path="res://resources/unit_stats.gd" id="1_jbtm3"]
 [ext_resource type="SpriteFrames" uid="uid://ce0p288p8w3bc" path="res://units/guard_sprite_frames.tres" id="1_peins"]
+[ext_resource type="Resource" uid="uid://b57ldl8x5xv4k" path="res://weapons/sword_slash.tres" id="2_dhdws"]
+[ext_resource type="Script" uid="uid://csw4odyi8mpih" path="res://resources/weapon.gd" id="4_ywswy"]
+
+[sub_resource type="Resource" id="Resource_mnn3r"]
+script = ExtResource("4_ywswy")
+name = "None"
+range = Array[Vector2i]([])
+damage = 0
+attack_type = 0
+metadata/_custom_type_script = "uid://csw4odyi8mpih"
 
 [resource]
 script = ExtResource("1_jbtm3")
 name = "Guard"
 max_health = 5
-attack_range = Array[Vector2i]([Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)])
-attack_damage = 2
-attack_type = 0
+movement = 3
 animations = ExtResource("1_peins")
+primary_weapon = ExtResource("2_dhdws")
+secondary_weapon = SubResource("Resource_mnn3r")
 metadata/_custom_type_script = "uid://cfbn5ljmtpwj1"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://bqwyxxd85shb0"]
+
+[ext_resource type="Script" uid="uid://csw4odyi8mpih" path="res://resources/weapon.gd" id="1_k3itf"]
+
+[resource]
+script = ExtResource("1_k3itf")
+name = "recurve_shot"
+range = Array[Vector2i]([Vector2i(1, 1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(2, 0), Vector2i(0, 2), Vector2i(-2, 0), Vector2i(0, -2)])
+damage = 3
+attack_type = 3
+metadata/_custom_type_script = "uid://csw4odyi8mpih"
