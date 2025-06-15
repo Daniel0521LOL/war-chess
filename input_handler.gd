@@ -35,7 +35,7 @@ func _next_group() -> void:
 			current_active_group = 0
 			player_input_on = true
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter"):
 		print("Enter detected. Next turn.")
 		deselect_unit()
@@ -69,14 +69,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func select_unit(unit: Unit):
 	selected_unit = unit
-	var occupied_maps = Units.get_occupied_maps()
 	if selected_unit.move_availible:
 		unit_move_range = Board.get_unit_move_range(selected_unit)
-		var new_move_range = []
-		for i in unit_move_range:
-			if not i in occupied_maps:
-				new_move_range.append(i)
-		unit_move_range = new_move_range
 		Board.clear_highlight()
 		Board.set_highlight_at_map_points(unit_move_range, 1)
 	elif selected_unit.action_availible:

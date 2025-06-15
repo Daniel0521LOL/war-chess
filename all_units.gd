@@ -29,4 +29,8 @@ func get_occupied_maps() -> Array[Vector2i]:
 		occupied_maps.append(i.current_map)
 	return occupied_maps
 
-###
+func get_occupied_maps_by_unit_group(group: Globals.UnitGroups) -> Array[Vector2i]:
+	var occupied_maps: Array[Vector2i] = []
+	for i in unit_log[group]:
+		occupied_maps.append(i.current_map)
+	return occupied_maps
