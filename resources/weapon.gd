@@ -1,3 +1,4 @@
+@icon("res://assets/icons/crossbow.svg")
 extends Resource
 class_name Weapon
 

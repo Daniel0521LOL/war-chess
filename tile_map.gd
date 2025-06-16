@@ -79,7 +79,7 @@ func _flood_fill(start_map: Vector2i, max_range: int) -> Array:
 	var output_array := []
 	var stack := [[start_map, max_range+1]]
 	while not stack.is_empty():
-		var i = stack.pop_back()
+		var i = stack.pop_front()
 		print(i, is_map_moveable(i[0]))
 		if i[1] == 0:
 			continue

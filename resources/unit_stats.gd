@@ -1,3 +1,4 @@
+@icon("res://assets/icons/swordwoman.svg")
 extends Resource
 class_name UnitStats
 
