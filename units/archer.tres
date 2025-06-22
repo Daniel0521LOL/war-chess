@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="UnitStats" load_steps=5 format=3 uid="uid://dbvktwjs7x6ta"]
+[gd_resource type="Resource" script_class="UnitStats" load_steps=6 format=3 uid="uid://dbvktwjs7x6ta"]
 
 [ext_resource type="SpriteFrames" uid="uid://cx6erq7muci5v" path="res://units/archer_sprite_frames.tres" id="1_25ydl"]
 [ext_resource type="Script" uid="uid://cfbn5ljmtpwj1" path="res://resources/unit_stats.gd" id="1_lg1mp"]
 [ext_resource type="Resource" uid="uid://bqwyxxd85shb0" path="res://weapons/recurve_shot.tres" id="2_3468w"]
+[ext_resource type="Script" uid="uid://csw4odyi8mpih" path="res://resources/weapon.gd" id="3_mtse4"]
 [ext_resource type="Resource" uid="uid://bcn2jqn0lcup1" path="res://weapons/focused_shot.tres" id="4_mtse4"]
 
 [resource]
@@ -11,6 +12,5 @@ name = "Archer"
 max_health = 4
 movement = 4
 animations = ExtResource("1_25ydl")
-primary_weapon = ExtResource("2_3468w")
-secondary_weapon = ExtResource("4_mtse4")
+weapons = Array[ExtResource("3_mtse4")]([ExtResource("2_3468w"), ExtResource("4_mtse4")])
 metadata/_custom_type_script = "uid://cfbn5ljmtpwj1"

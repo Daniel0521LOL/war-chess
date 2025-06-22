@@ -11,7 +11,7 @@ var _astar = AStarGrid2D.new()
 var solid_maps: Array[Vector2i] = []
 
 func _ready() -> void:
-	_astar.region = Rect2i(0, 0, 11, 5)
+	_astar.region = Rect2i(0, 0, 0, 0)
 	_astar.cell_size = CELL_SIZE
 	_astar.offset = CELL_SIZE * 0.5
 	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
@@ -23,7 +23,22 @@ func _ready() -> void:
 		for m in range(_astar.region.position[1], _astar.region.position[1] + _astar.region.size[1]):
 			if Main.get_cell_atlas_coords(Vector2i(n, m)) != Vector2i(0, 0):
 				solid_maps.append(Vector2i(n, m))
-			
+	#solid_maps = Main.get_used_cells_by_id(-1, Vector2i(-1, -1), -1)
+	load_tilemap_pattern(0)
+
+func update_solid_maps() -> void:
+	solid_maps = []
+	for n in range(_astar.region.position[0], _astar.region.position[0] + _astar.region.size[0]):
+		for m in range(_astar.region.position[1], _astar.region.position[1] + _astar.region.size[1]):
+			if Main.get_cell_atlas_coords(Vector2i(n, m)) != Vector2i(0, 0):
+				solid_maps.append(Vector2i(n, m))
+
+func load_tilemap_pattern(id: int) -> void:
+	Main.clear()
+	Main.set_pattern(Vector2i(0, 0), Main.tile_set.get_pattern(0))
+	_astar.region = Main.get_used_rect()
+	_astar.update()
+	update_solid_maps()
 
 func redraw_astar_grid(additional_remove_maps: Array[Vector2i]) -> void:
 	_astar.fill_solid_region(_astar.region, false)
@@ -80,7 +95,6 @@ func _flood_fill(start_map: Vector2i, max_range: int) -> Array:
 	var stack := [[start_map, max_range+1]]
 	while not stack.is_empty():
 		var i = stack.pop_front()
-		print(i, is_map_moveable(i[0]))
 		if i[1] == 0:
 			continue
 		

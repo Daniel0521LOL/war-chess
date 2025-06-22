@@ -1,24 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://n4e03ljp06q7"]
+[gd_scene load_steps=15 format=4 uid="uid://n4e03ljp06q7"]
 
 [ext_resource type="Script" uid="uid://dfh5hvxtxv8g5" path="res://ui.gd" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://dekkn7ho7cffa" path="res://assets/tiles/tiles.png" id="1_glv2v"]
-[ext_resource type="PackedScene" uid="uid://m25soh2usunc" path="res://ui_components/UnitStatsUI.tscn" id="2_5vvyt"]
 [ext_resource type="Script" uid="uid://so0ov1gon80y" path="res://tile_map.gd" id="2_uu6xs"]
-[ext_resource type="PackedScene" uid="uid://cceolstmrfc4u" path="res://ui_components/WeaponStatsUI.tscn" id="3_5vvyt"]
 [ext_resource type="Script" uid="uid://cjago3koiclfg" path="res://all_units.gd" id="3_fos0i"]
 [ext_resource type="Texture2D" uid="uid://da3fwfvw2hoxk" path="res://assets/ui/tile_select.png" id="3_lgr22"]
 [ext_resource type="PackedScene" uid="uid://falqq4373b14" path="res://units/Unit.tscn" id="3_r0du0"]
 [ext_resource type="Script" uid="uid://bvxamtvmh56f8" path="res://input_handler.gd" id="4_cm0pq"]
 [ext_resource type="Script" uid="uid://c7owtjr28cmov" path="res://tile_select.gd" id="4_trn2v"]
+[ext_resource type="Texture2D" uid="uid://iypsfx7baty1" path="res://assets/ui/double_border_box.png" id="6_lgr22"]
 [ext_resource type="Resource" uid="uid://8w4yirem82db" path="res://units/guard.tres" id="7_03owx"]
 [ext_resource type="Resource" uid="uid://dbvktwjs7x6ta" path="res://units/archer.tres" id="8_wkp8b"]
 
-[sub_resource type="Theme" id="Theme_20pc6"]
-
 [sub_resource type="Theme" id="Theme_wkp8b"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_20pc6"]
-tile_data = PackedInt32Array(131072, 3, 0, 196608, 3, 0, 262144, 3, 0, 327680, 3, 0, 65537, 3, 0, 131073, 3, 0, 196609, 3, 0, 262145, 3, 0, 327681, 3, 0, 393217, 3, 0, 2, 3, 0, 65538, 3, 0, 131074, 3, 0, 196610, 3, 0, 262146, 3, 0, 393218, 3, 0, 458754, 3, 0, 3, 3, 0, 65539, 3, 0, 131075, 3, 0, 196611, 3, 0, 262147, 3, 0, 327683, 3, 0, 393219, 3, 0, 458755, 3, 0, 4, 3, 0, 65540, 3, 0, 131076, 3, 0, 327684, 3, 0, 393220, 3, 0, 458756, 3, 0, 5, 3, 0, 65541, 3, 0, 393221, 3, 0, 458757, 3, 0, 6, 3, 0, 65542, 3, 0, 7, 3, 0, 65543, 3, 0, 393223, 3, 0, 458759, 3, 0, 8, 3, 0, 65544, 3, 0, 393224, 3, 0, 458760, 3, 0, 9, 3, 0, 65545, 3, 0, 131081, 3, 0, 196617, 3, 0, 262153, 3, 0, 393225, 3, 0, 65546, 3, 0, 131082, 3, 0, 196618, 3, 0, 262154, 3, 0, 393226, 3, 0, 131083, 3, 0, 196619, 3, 0, 262155, 3, 0, 393227, 3, 0, 458763, 3, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uu6xs"]
 resource_name = "neutral"
@@ -33,7 +27,6 @@ resource_local_to_scene = true
 tile_size = Vector2i(32, 32)
 sources/3 = SubResource("TileSetAtlasSource_uu6xs")
 tile_proxies/coords_level = [[0, Vector2i(0, 0)], [3, Vector2i(0, 0)], [1, Vector2i(0, 0)], [3, Vector2i(1, 0)], [2, Vector2i(0, 0)], [3, Vector2i(2, 0)]]
-pattern_0 = SubResource("TileMapPattern_20pc6")
 
 [node name="Main" type="Node2D"]
 
@@ -47,7 +40,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_20pc6")
 script = ExtResource("1_20pc6")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
@@ -68,19 +60,83 @@ layout_mode = 2
 theme = SubResource("Theme_wkp8b")
 theme_override_constants/separation = 20
 
-[node name="UnitStats" parent="CanvasLayer/UI/MarginContainer/HBoxContainer" instance=ExtResource("2_5vvyt")]
+[node name="UnitStats" type="NinePatchRect" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 130)
+layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("6_lgr22")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
-[node name="WeaponStats" parent="CanvasLayer/UI/MarginContainer/HBoxContainer" instance=ExtResource("3_5vvyt")]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="UnitName" type="Label" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "UnitName"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="HP" type="Label" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "HP"
+
+[node name="HPAmount" type="Label" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "n/x"
+
+[node name="MOV" type="Label" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "MOV"
+
+[node name="MOVAmount" type="Label" parent="CanvasLayer/UI/MarginContainer/HBoxContainer/UnitStats/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "n"
+
+[node name="WeaponStats" type="NinePatchRect" parent="CanvasLayer/UI/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_lgr22")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="GameBoard" type="Node2D" parent="."]
-position = Vector2(83, 83)
+position = Vector2(107, 210)
 scale = Vector2(2, 2)
 script = ExtResource("2_uu6xs")
 
 [node name="Main" type="TileMapLayer" parent="GameBoard"]
 texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAwAAAAAAAAACAAAAAwAAAAAAAAADAAAAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAAAAAABAAQAAwAAAAAAAAACAAQAAwAAAAAAAAADAAQAAwAAAAAAAAAEAAQAAwAAAAAAAAAEAAMAAwAAAAAAAAAEAAEAAwAAAAAAAAAEAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAFAAQAAwAAAAAAAAAGAAQAAwAAAAAAAAAHAAQAAwAAAAAAAAAHAAMAAwAAAAAAAAAGAAMAAwAAAAAAAAAGAAIAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAwAAAAAAAAAHAAIAAwAAAAAAAAAIAAIAAwAAAAAAAAAIAAAAAwAAAAAAAAAIAAQAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAMAAwAAAAAAAAAKAAMAAwAAAAAAAAAKAAIAAwAAAAAAAAAJAAIAAwAAAAAAAAAJAAEAAwAAAAAAAAAJAAAAAwAAAAAAAAAKAAAAAwAAAAAAAAAKAAEAAwAAAAAAAAAKAAQAAwAAAAAAAAABAAEAAwAAAAAAAAABAAMAAwAAAAAAAAADAAEAAwAAAAAAAAADAAMAAwAAAAAAAAAFAAEAAwAAAAAAAAAFAAMAAwAAAAAAAAABAAIAAwAAAAAAAAAAAAEAAwAAAAAAAAABAAAAAwAAAAAAAAACAAIAAwAAAAAAAAADAAIAAwAAAAAAAAAEAAIAAwAAAAAAAAA=")
 tile_set = SubResource("TileSet_03owx")
 
 [node name="Highlight" type="TileMapLayer" parent="GameBoard"]

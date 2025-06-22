@@ -22,14 +22,16 @@ var action_availible = true
 var speed = 200
 
 var selected: bool = false
-@onready var current_weapon: Weapon = stats.primary_weapon
+var current_weapon: Weapon
 
 func _ready() -> void:
 	$AnimatedSprite.sprite_frames = stats.animations
 	change_state(States.IDLE)
 	set_position_to_map(start_map)
-	print(current_map)
+	if stats.weapons:
+		current_weapon = stats.weapons[0]
 	$HealthDisplay.text = str(health) + "/" + str(stats.max_health)
+	
 
 	#path = game_board.find_path(current_map, Vector2i(6, 2))
 	#change_state(States.MOVING)
@@ -71,10 +73,13 @@ func change_state(_new_state: States) -> void:
 			$AnimatedSprite.play("moving")
 
 func change_weapon() -> void:
-	if current_weapon == stats.primary_weapon:
-		current_weapon = stats.secondary_weapon
+	if current_weapon == null or stats.weapons == []:
+		return
+	var new_weapon_index = stats.weapons.find(current_weapon) + 1
+	if new_weapon_index >= len(stats.weapons):
+		current_weapon = stats.weapons[0]
 	else:
-		current_weapon = stats.primary_weapon
+		current_weapon = stats.weapons[new_weapon_index]
 
 func select_unit() -> void:
 	selected = true
