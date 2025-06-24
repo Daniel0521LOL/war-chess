@@ -19,23 +19,23 @@ func _ready() -> void:
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	_astar.update()
 	#print(global_to_map(Vector2(270, 200)))
-	for n in range(_astar.region.position[0], _astar.region.position[0] + _astar.region.size[0]):
-		for m in range(_astar.region.position[1], _astar.region.position[1] + _astar.region.size[1]):
-			if Main.get_cell_atlas_coords(Vector2i(n, m)) != Vector2i(0, 0):
-				solid_maps.append(Vector2i(n, m))
+	#for n in range(_astar.region.position[0], _astar.region.position[0] + _astar.region.size[0]):
+		#for m in range(_astar.region.position[1], _astar.region.position[1] + _astar.region.size[1]):
+			#if Main.get_cell_source_id(Vector2i(n, m)) != 0:
+				#solid_maps.append(Vector2i(n, m))
 	#solid_maps = Main.get_used_cells_by_id(-1, Vector2i(-1, -1), -1)
-	load_tilemap_pattern(0)
+	load_tilemap_pattern(1)
 
 func update_solid_maps() -> void:
 	solid_maps = []
 	for n in range(_astar.region.position[0], _astar.region.position[0] + _astar.region.size[0]):
 		for m in range(_astar.region.position[1], _astar.region.position[1] + _astar.region.size[1]):
-			if Main.get_cell_atlas_coords(Vector2i(n, m)) != Vector2i(0, 0):
+			if Main.get_cell_source_id(Vector2i(n, m)) != 0:
 				solid_maps.append(Vector2i(n, m))
 
 func load_tilemap_pattern(id: int) -> void:
 	Main.clear()
-	Main.set_pattern(Vector2i(0, 0), Main.tile_set.get_pattern(0))
+	Main.set_pattern(Vector2i(0, 0), Main.tile_set.get_pattern(id))
 	_astar.region = Main.get_used_rect()
 	_astar.update()
 	update_solid_maps()

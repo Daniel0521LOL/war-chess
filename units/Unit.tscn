@@ -8,6 +8,7 @@ texture_filter = 1
 script = ExtResource("1_ypl2c")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_pyybm")
 animation = &"attack"

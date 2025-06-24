@@ -1,15 +1,26 @@
 [gd_scene load_steps=2 format=3 uid="uid://cceolstmrfc4u"]
 
-[ext_resource type="Texture2D" uid="uid://iypsfx7baty1" path="res://assets/ui/double_border_box.png" id="1_gs270"]
+[ext_resource type="Texture2D" uid="uid://c5bn4rciubvik" path="res://assets/ui/single_border_box.png" id="1_ocxg0"]
 
 [node name="WeaponStats" type="NinePatchRect"]
 custom_minimum_size = Vector2(70, 50)
 layout_direction = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_gs270")
+texture = ExtResource("1_ocxg0")
 region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
